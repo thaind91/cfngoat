@@ -1,11 +1,20 @@
-steps:
+name: PrismaCloud-Workflow-NDThai
+on: 
+  push:
+    branches:
+      - master
+jobs:
+  scan:
+    runs-on: ubuntu-lastest
+    strategy: 
+      matrix:
+        python-version: [3.8]
+    steps:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Run Bridgecrew 
-        id: Bridgecrew
-        uses: bridgecrewio/bridgecrew-action@master 
+      - name: Run Prisma Cloud 
+        id: prisma-cloud
+        uses: bridgecrewio/checkov-action@master
         env:
-          PRISMA_API_URL: https://api3.prismacloud.io
-        with:
-          api-key: ${{ secrets.BC_API_KEY }}
+          PRISMA_API_URL: https://api.sg.prismacloud.io
