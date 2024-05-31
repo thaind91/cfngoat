@@ -1,7 +1,7 @@
 name: PrismaCloud-Workflow-NDThai
-  on:
-    push:
-     branches:
+on:
+  push:
+    branches:
      - master
 jobs:
   scan:
